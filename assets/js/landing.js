@@ -1,0 +1,90 @@
+import { api, config, initHeader, closeSignupLinks, STATIC, $, $$, el, n, money } from './core.js';
+
+initHeader();
+animateBuildLog();
+renderKinds();
+renderPlans();
+renderShowcase();
+
+// Real engine output only (written by scripts/make-showcase.ts); the section stays hidden without it.
+async function renderShowcase() {
+  let data;
+  try {
+    const res = await fetch(STATIC ? 'showcase/showcase.json' : '/showcase/showcase.json', { cache: 'no-cache' });
+    if (!res.ok) return;
+    data = await res.json();
+  } catch { return; }
+  if (!data.items?.length) return;
+  const secs = (s) => (s < 60 ? `${n(s)} ثانیه` : `${n(Math.round(s / 60))} دقیقه`);
+  const caption = (it) => el('figcaption', {},
+    el('strong', { text: it.name }),
+    el('span', { class: 'muted small', text: `${it.kind_fa}، ساخت در ${secs(it.seconds)}${it.fixed_after_review ? ' (شامل درخواست رفع ایراد)' : ''}${it.audit !== null ? `، ممیزی ${n(it.audit)} از ۱۰۰` : ''}` }));
+  // Code kinds have no visual preview: show the real file list and the features the engine reported.
+  const card = (it) => it.code
+    ? el('figure', { class: 'sample sample-code', 'data-kind': it.kind },
+      el('div', { class: 'sample-shot code-card', role: 'img', 'aria-label': `فهرست فایل‌های ${it.name}` },
+        el('ul', { class: 'code-files ltr' }, ...it.files.map((f) => el('li', { text: f })),
+          it.file_count > it.files.length ? el('li', { class: 'muted', text: `+${it.file_count - it.files.length}` }) : null),
+        it.features.length ? el('ul', { class: 'code-features' }, ...it.features.map((f) => el('li', { text: f }))) : null),
+      caption(it))
+    : el('figure', { class: `sample ${it.mobile ? 'sample-mobile' : ''}`, 'data-kind': it.kind },
+      el('div', { class: 'sample-shot' }, el('img', { src: STATIC ? it.image.replace(/^\//, '') : it.image, alt: `تصویر صفحهٔ اصلی ${it.name}`, loading: 'lazy', width: it.mobile ? '390' : '1280', height: it.mobile ? '780' : '800' })),
+      caption(it));
+
+  const list = $('[data-showcase-list]');
+  list.replaceChildren(...data.items.map(card));
+  const kinds = [...new Map(data.items.map((it) => [it.kind, it.kind_fa])).entries()];
+  const filter = (kind) => {
+    $$('[data-showcase-filter] button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.kind === kind)));
+    $$('.sample', list).forEach((f) => { f.hidden = kind !== 'all' && f.dataset.kind !== kind; });
+  };
+  $('[data-showcase-filter]').replaceChildren(
+    el('button', { type: 'button', class: 'chip', 'data-kind': 'all', 'aria-pressed': 'true', onclick: () => filter('all'), text: `همه (${n(data.items.length)})` }),
+    ...kinds.map(([k, fa]) => el('button', { type: 'button', class: 'chip', 'data-kind': k, 'aria-pressed': 'false', onclick: () => filter(k),
+      text: `${fa} (${n(data.items.filter((i) => i.kind === k).length)})` })));
+  $('[data-showcase]').hidden = false;
+}
+
+// One orchestrated reveal of the sample build log; skipped when motion is reduced.
+function animateBuildLog() {
+  const log = $('.buildlog');
+  if (!log || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  log.classList.add('animate');
+  [...log.querySelectorAll('[data-step]')].forEach((li, i) => setTimeout(() => li.classList.add('shown'), 400 + i * 550));
+}
+
+async function renderKinds() {
+  const box = $('[data-kinds]');
+  try {
+    const { kinds } = await config();
+    box.replaceChildren(...kinds.map((k) => el('div', { class: 'kinds-row' },
+      el('dt', {}, k.fa, el('span', { class: `tag ${k.preview ? '' : 'files'}`, text: k.preview ? 'پیش‌نمایش در مرورگر' : 'تحویل فایل' })),
+      el('dd', { text: k.note_fa }))));
+  } catch {
+    box.replaceChildren(el('p', { class: 'muted', text: 'فهرست انواع پروژه بارگذاری نشد؛ صفحه را تازه کنید.' }));
+  }
+}
+
+async function renderPlans() {
+  const box = $('[data-plans]');
+  try {
+    const [{ plans }, { kinds }] = await Promise.all([api('/api/plans'), config()]);
+    const kindName = Object.fromEntries(kinds.map((k) => [k.id, k.fa]));
+    box.replaceChildren(...plans.map((p) => el('article', { class: `plan ${p.id === 'pro' ? 'featured' : ''}` },
+      el('h3', { text: p.name_fa }),
+      el('p', { class: 'price' }, p.id === 'enterprise' && !p.price_monthly ? 'توافقی' : money(p.price_monthly, p.currency),
+        p.price_monthly ? el('small', { text: ' در ماه' }) : null),
+      el('p', { class: 'desc', text: p.description_fa }),
+      el('ul', {},
+        el('li', { text: `${n(p.max_projects)} پروژهٔ فعال` }),
+        el('li', { text: `${n(p.runs_per_month)} بار ساخت یا اصلاح در ماه` }),
+        el('li', { text: p.max_concurrent_runs > 1 ? `${n(p.max_concurrent_runs)} ساخت هم‌زمان` : 'یک ساخت هم‌زمان' }),
+        el('li', { text: p.allowed_kinds.map((k) => kindName[k]).join('، ') })),
+      el('a', { class: `btn ${p.id === 'pro' ? 'btn-primary' : ''}`, href: p.id === 'free' ? '/signup' : '/account#plans',
+        text: p.id === 'free' ? 'شروع رایگان' : p.id === 'enterprise' ? 'درخواست پلن سازمانی' : `درخواست پلن ${p.name_fa}` }))));
+  } catch {
+    box.replaceChildren(el('p', { class: 'muted', text: 'پلن‌ها بارگذاری نشدند؛ صفحه را تازه کنید.' }));
+  }
+  box.removeAttribute('aria-busy');
+  if (!(await config()).brand.signupEnabled) closeSignupLinks(box);
+}

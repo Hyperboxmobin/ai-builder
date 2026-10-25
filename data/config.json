@@ -1,0 +1,68 @@
+{
+  "brand": {
+    "name": "AI Builder Platform",
+    "tagline": "سایت و اپلیکیشن خود را با توضیح فارسی بسازید",
+    "primary": "#2f5bea",
+    "signupEnabled": false,
+    "paymentsEnabled": false
+  },
+  "kinds": [
+    {
+      "id": "site",
+      "fa": "وب‌سایت",
+      "en": "Website",
+      "preview": true,
+      "note_fa": "سایت شرکتی، شخصی، نمونه‌کار یا معرفی کسب‌وکار"
+    },
+    {
+      "id": "shop",
+      "fa": "فروشگاه اینترنتی",
+      "en": "Online shop",
+      "preview": true,
+      "note_fa": "فهرست محصول، سبد خرید و صفحهٔ سفارش (بدون درگاه پرداخت واقعی)"
+    },
+    {
+      "id": "webapp",
+      "fa": "اپلیکیشن تحت وب",
+      "en": "Web app",
+      "preview": true,
+      "note_fa": "داشبورد، پنل، ابزار داخلی یا اپ تک‌صفحه‌ای با ذخیرهٔ محلی"
+    },
+    {
+      "id": "mobile",
+      "fa": "اپ موبایل (PWA)",
+      "en": "Mobile app (PWA)",
+      "preview": true,
+      "note_fa": "وب‌اپ قابل نصب روی گوشی"
+    },
+    {
+      "id": "game",
+      "fa": "بازی",
+      "en": "Game",
+      "preview": true,
+      "note_fa": "بازی ساده در مرورگر"
+    },
+    {
+      "id": "api",
+      "fa": "سرویس API",
+      "en": "API",
+      "preview": false,
+      "note_fa": "سرویس پایتون؛ به‌صورت فایل تحویل می‌شود و روی پلتفرم اجرا نمی‌شود"
+    },
+    {
+      "id": "tool",
+      "fa": "ابزار خط فرمان",
+      "en": "CLI tool",
+      "preview": false,
+      "note_fa": "برنامهٔ پایتون؛ به‌صورت فایل تحویل می‌شود"
+    },
+    {
+      "id": "bot",
+      "fa": "ربات تلگرام",
+      "en": "Bot",
+      "preview": false,
+      "note_fa": "کد ربات؛ برای اجرا به توکن خودتان نیاز دارد"
+    }
+  ],
+  "maxPromptChars": 4000
+}

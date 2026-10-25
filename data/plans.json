@@ -1,0 +1,97 @@
+{
+  "plans": [
+    {
+      "id": "free",
+      "name_fa": "رایگان",
+      "name_en": "Free",
+      "description_fa": "برای آشنایی: سایت و وب‌اپ ساده با سهمیهٔ محدود.",
+      "price_monthly": 0,
+      "currency": "IRT",
+      "max_projects": 2,
+      "runs_per_month": 5,
+      "max_concurrent_runs": 1,
+      "allowed_kinds": [
+        "site",
+        "webapp",
+        "tool"
+      ],
+      "zip_download": true,
+      "sort_order": 1,
+      "public": true,
+      "updated_at": "2026-10-25T03:26:15.419Z"
+    },
+    {
+      "id": "basic",
+      "name_fa": "پایه",
+      "name_en": "Basic",
+      "description_fa": "پروژه‌ها و اجراهای بیشتر، همهٔ انواع وب.",
+      "price_monthly": 490000,
+      "currency": "IRT",
+      "max_projects": 10,
+      "runs_per_month": 40,
+      "max_concurrent_runs": 1,
+      "allowed_kinds": [
+        "site",
+        "shop",
+        "webapp",
+        "mobile",
+        "game",
+        "tool"
+      ],
+      "zip_download": true,
+      "sort_order": 2,
+      "public": true,
+      "updated_at": "2026-10-25T03:26:15.420Z"
+    },
+    {
+      "id": "pro",
+      "name_fa": "حرفه‌ای",
+      "name_en": "Pro",
+      "description_fa": "همهٔ انواع پروژه از جمله API و ربات، ظرفیت بالاتر.",
+      "price_monthly": 1490000,
+      "currency": "IRT",
+      "max_projects": 50,
+      "runs_per_month": 200,
+      "max_concurrent_runs": 2,
+      "allowed_kinds": [
+        "site",
+        "shop",
+        "webapp",
+        "mobile",
+        "game",
+        "api",
+        "tool",
+        "bot"
+      ],
+      "zip_download": true,
+      "sort_order": 3,
+      "public": true,
+      "updated_at": "2026-10-25T03:26:15.420Z"
+    },
+    {
+      "id": "enterprise",
+      "name_fa": "سازمانی",
+      "name_en": "Enterprise",
+      "description_fa": "سهمیه و دسترسی‌های قابل تنظیم برای تیم‌ها؛ با مدیر هماهنگ کنید.",
+      "price_monthly": 0,
+      "currency": "IRT",
+      "max_projects": 500,
+      "runs_per_month": 2000,
+      "max_concurrent_runs": 3,
+      "allowed_kinds": [
+        "site",
+        "shop",
+        "webapp",
+        "mobile",
+        "game",
+        "api",
+        "tool",
+        "bot"
+      ],
+      "zip_download": true,
+      "sort_order": 4,
+      "public": true,
+      "updated_at": "2026-10-25T03:26:15.420Z"
+    }
+  ]
+}

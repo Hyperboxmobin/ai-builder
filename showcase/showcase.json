@@ -1,0 +1,93 @@
+{
+  "generated_at": "2026-10-25T12:24:51.215Z",
+  "items": [
+    {
+      "name": "شرکت ساختمانی پایا",
+      "kind": "site",
+      "kind_fa": "وب‌سایت",
+      "seconds": 60,
+      "built_at": "2026-10-25T11:31:36.525Z",
+      "audit": 100,
+      "fixed_after_review": false,
+      "image": "showcase/3a470ce9-v1.jpg",
+      "mobile": false
+    },
+    {
+      "name": "کلینیک دندان‌پزشکی لبخند",
+      "kind": "site",
+      "kind_fa": "وب‌سایت",
+      "seconds": 31,
+      "built_at": "2026-10-25T11:30:34.526Z",
+      "audit": 100,
+      "fixed_after_review": false,
+      "image": "showcase/e7a31a8a-v1.jpg",
+      "mobile": false
+    },
+    {
+      "name": "آتلیه نگاره",
+      "kind": "site",
+      "kind_fa": "وب‌سایت",
+      "seconds": 30,
+      "built_at": "2026-10-25T03:56:50.247Z",
+      "audit": 100,
+      "fixed_after_review": false,
+      "image": "showcase/1cad0332-v1.jpg",
+      "mobile": false
+    },
+    {
+      "name": "گالری صنایع دستی ترمه",
+      "kind": "shop",
+      "kind_fa": "فروشگاه اینترنتی",
+      "seconds": 68,
+      "built_at": "2026-10-25T11:33:33.821Z",
+      "audit": 100,
+      "fixed_after_review": false,
+      "image": "showcase/ccfbc61c-v1.jpg",
+      "mobile": false
+    },
+    {
+      "name": "کتاب‌سرای نیلوفر",
+      "kind": "shop",
+      "kind_fa": "فروشگاه اینترنتی",
+      "seconds": 46,
+      "built_at": "2026-10-25T11:32:23.636Z",
+      "audit": 100,
+      "fixed_after_review": false,
+      "image": "showcase/29908bd3-v1.jpg",
+      "mobile": false
+    },
+    {
+      "name": "برگ سبز",
+      "kind": "shop",
+      "kind_fa": "فروشگاه اینترنتی",
+      "seconds": 41,
+      "built_at": "2026-10-25T03:57:31.895Z",
+      "audit": 100,
+      "fixed_after_review": false,
+      "image": "showcase/99c9506c-v1.jpg",
+      "mobile": false
+    },
+    {
+      "name": "تخته کار تیم",
+      "kind": "webapp",
+      "kind_fa": "اپلیکیشن تحت وب",
+      "seconds": 1900,
+      "built_at": "2026-10-25T11:54:22.524Z",
+      "audit": null,
+      "fixed_after_review": true,
+      "image": "showcase/8fa48a7d-v3.jpg",
+      "mobile": false
+    },
+    {
+      "name": "دخل و خرج",
+      "kind": "webapp",
+      "kind_fa": "اپلیکیشن تحت وب",
+      "seconds": 414,
+      "built_at": "2026-10-25T11:40:29.294Z",
+      "audit": null,
+      "fixed_after_review": false,
+      "image": "showcase/328193c1-v1.jpg",
+      "mobile": false
+    }
+  ]
+}
