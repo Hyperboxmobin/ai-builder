@@ -1,0 +1,134 @@
+/* styles.css */
+/* 
+   Note: base.css is provided by the environment. 
+   This file adds app-specific refinements.
+*/
+
+:root {
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+}
+
+/* Custom overrides for specific elements */
+.app-nav .btn[aria-current="page"] {
+    background-color: var(--primary);
+    color: var(--primary-ink);
+}
+
+.stat-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.table-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-wrap th {
+    background-color: var(--surface);
+    color: var(--muted);
+    font-weight: 600;
+    text-align: right;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 2px solid var(--line);
+}
+
+.table-wrap td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--line);
+    color: var(--text);
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 65px;
+    background-color: var(--surface);
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+.bottom-nav .btn {
+    flex: 1;
+    height: 100%;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    gap: 4px;
+    border-radius: 0;
+}
+
+.bottom-nav .btn[aria-current="page"] {
+    color: var(--primary);
+}
+
+.toast {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: 2rem;
+    background-color: var(--text);
+    color: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+dialog {
+    border: none;
+    border-radius: var(--radius);
+    background-color: var(--card);
+    color: var(--text);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow);
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+canvas {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 300px;
+}
+
+.field label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+input, select {
+    background-color: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--line);
+    padding: 0.5rem;
+    border-radius: var(--radius);
+}
+
+@media (max-width: 600px) {
+    .app-nav {
+        display: none;
+    }
+}

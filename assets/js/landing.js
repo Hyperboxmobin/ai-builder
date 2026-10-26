@@ -28,8 +28,15 @@ async function renderShowcase() {
         it.features.length ? el('ul', { class: 'code-features' }, ...it.features.map((f) => el('li', { text: f }))) : null),
       caption(it))
     : el('figure', { class: `sample ${it.mobile ? 'sample-mobile' : ''}`, 'data-kind': it.kind },
-      el('div', { class: 'sample-shot' }, el('img', { src: STATIC ? it.image.replace(/^\//, '') : it.image, alt: `تصویر صفحهٔ اصلی ${it.name}`, loading: 'lazy', width: it.mobile ? '390' : '1280', height: it.mobile ? '780' : '800' })),
-      caption(it));
+      (() => {
+        const img = el('img', { src: STATIC ? it.image.replace(/^\//, '') : it.image, alt: `تصویر صفحهٔ اصلی ${it.name}`, loading: 'lazy', width: it.mobile ? '390' : '1280', height: it.mobile ? '780' : '800' });
+        // Live demos exist only in the static showcase build (separate origin from the platform).
+        return STATIC && it.demo
+          ? el('button', { type: 'button', class: 'sample-shot sample-open', 'aria-label': `مشاهدهٔ زندهٔ ${it.name}`, onclick: () => openDemo(it) }, img)
+          : el('div', { class: 'sample-shot' }, img);
+      })(),
+      caption(it),
+      STATIC && it.demo ? el('button', { type: 'button', class: 'btn btn-sm sample-live', onclick: () => openDemo(it), text: 'مشاهدهٔ زنده' }) : null);
 
   const list = $('[data-showcase-list]');
   list.replaceChildren(...data.items.map(card));
@@ -43,6 +50,40 @@ async function renderShowcase() {
     ...kinds.map(([k, fa]) => el('button', { type: 'button', class: 'chip', 'data-kind': k, 'aria-pressed': 'false', onclick: () => filter(k),
       text: `${fa} (${n(data.items.filter((i) => i.kind === k).length)})` })));
   $('[data-showcase]').hidden = false;
+}
+
+// Live demo viewer: the generated site runs in a sandboxed iframe (opaque origin, no access to
+// this page), with a phone/desktop toggle and an "open in new tab" link.
+let viewer;
+function openDemo(it) {
+  if (!viewer) {
+    const frame = el('iframe', { class: 'demo-frame', title: '', sandbox: 'allow-scripts allow-forms allow-modals allow-popups', referrerpolicy: 'no-referrer' });
+    const wrap = el('div', { class: 'demo-wrap', 'data-device': 'desktop' }, frame);
+    const title = el('h2', { class: 'demo-title' });
+    const newTab = el('a', { class: 'btn btn-sm', target: '_blank', rel: 'noopener noreferrer', text: 'باز کردن در زبانهٔ تازه' });
+    const device = (d) => el('button', { type: 'button', class: 'btn btn-sm btn-ghost', 'aria-pressed': String(d === 'desktop'), 'data-device': d, text: d === 'desktop' ? 'دسکتاپ' : 'موبایل',
+      onclick: (e) => { wrap.dataset.device = d; viewer.dialog.querySelectorAll('[data-device] button, .demo-devices button').forEach((b) => b.setAttribute('aria-pressed', String(b === e.currentTarget))); } });
+    const dialog = el('dialog', { class: 'demo-viewer', 'aria-labelledby': 'demo-title' },
+      el('div', { class: 'demo-bar' }, title,
+        el('div', { class: 'demo-devices', role: 'group', 'aria-label': 'اندازهٔ صفحه' }, device('desktop'), device('mobile')),
+        newTab,
+        el('button', { type: 'button', class: 'icon-btn', 'aria-label': 'بستن', onclick: () => dialog.close() },
+          el('span', { 'aria-hidden': 'true', text: '✕' }))),
+      wrap,
+      el('p', { class: 'hint demo-note', text: 'این نسخه‌ای از خروجی واقعی موتور است که در محیط ایزوله اجرا می‌شود؛ داده‌هایی که وارد می‌کنید ذخیره نمی‌شوند.' }));
+    title.id = 'demo-title';
+    dialog.addEventListener('close', () => { frame.src = 'about:blank'; });
+    document.body.append(dialog);
+    viewer = { dialog, frame, wrap, title, newTab };
+  }
+  viewer.title.textContent = `${it.name} — ${it.kind_fa}`;
+  viewer.frame.title = `نمایش زندهٔ ${it.name}`;
+  viewer.frame.src = it.demo;
+  viewer.newTab.href = it.demo;
+  const mobile = it.kind === 'mobile';
+  viewer.wrap.dataset.device = mobile ? 'mobile' : 'desktop';
+  viewer.dialog.querySelectorAll('.demo-devices button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.device === viewer.wrap.dataset.device)));
+  viewer.dialog.showModal();
 }
 
 // One orchestrated reveal of the sample build log; skipped when motion is reduced.

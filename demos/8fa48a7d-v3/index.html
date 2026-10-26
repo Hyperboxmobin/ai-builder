@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head><script>(function(){function mk(){var d=new Map();return{get length(){return d.size},key:function(i){return Array.from(d.keys())[i]??null},getItem:function(k){k=String(k);return d.has(k)?d.get(k):null},setItem:function(k,v){d.set(String(k),String(v))},removeItem:function(k){d.delete(String(k))},clear:function(){d.clear()}}}['localStorage','sessionStorage'].forEach(function(n){try{window[n].length}catch(e){try{Object.defineProperty(window,n,{value:mk(),configurable:true})}catch(_){}}});var sw={controller:null,ready:new Promise(function(){}),register:function(){return Promise.reject(new DOMException('Service workers are off in preview','SecurityError'))},getRegistration:function(){return Promise.resolve(undefined)},getRegistrations:function(){return Promise.resolve([])},addEventListener:function(){},removeEventListener:function(){}};try{if(!navigator.serviceWorker)throw 0}catch(e){try{Object.defineProperty(navigator,'serviceWorker',{value:sw,configurable:true})}catch(_){}}})();</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تخته کار تیم</title>
+    <link rel="stylesheet" href="assets/base.css">
+    <link rel="stylesheet" href="styles.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#4f46e5">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<script src="pwa.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <h1 class="sr-only">تخته کار تیم</h1>
+        <nav class="app-nav" aria-label="منوی اصلی">
+            <button id="navBoard" class="btn btn-primary" aria-current="page">تابلو</button>
+            <button id="navSettings" class="btn btn-ghost">تنظیمات</button>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <main class="container" id="mainContent">
+        <!-- Search & filter bar -->
+        <section class="stack" id="searchSection">
+            <div class="row" style="gap: .5rem; align-items: center;">
+                <div class="field" style="flex:1;">
+                    <label for="searchInput" class="sr-only">جستجو</label>
+                    <input type="search" id="searchInput" class="field-input" placeholder="جستجو..." autocomplete="off">
+                </div>
+                <div class="field">
+                    <label for="filterStatus" class="sr-only">وضعیت</label>
+                    <select id="filterStatus" class="field-select">
+                        <option value="">همه وضعیت‌ها</option>
+                        <option value="todo">انجام نشده</option>
+                        <option value="inprogress">در حال انجام</option>
+                        <option value="done">انجام شده</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="filterPriority" class="sr-only">اولویت</label>
+                    <select id="filterPriority" class="field-select">
+                        <option value="">همه اولویت‌ها</option>
+                        <option value="high">بالا</option>
+                        <option value="medium">متوسط</option>
+                        <option value="low">پایین</option>
+                    </select>
+                </div>
+                <button id="addTaskBtn" class="btn btn-primary">افزودن کار</button>
+            </div>
+        </section>
+
+        <!-- Statistics -->
+        <section class="row" id="statsSection" style="margin-top:1rem; gap:1rem;">
+            <div class="stat" aria-live="polite">
+                <div class="stat-value" id="countTodo">0</div>
+                <div class="stat-label">انجام نشده</div>
+            </div>
+            <div class="stat" aria-live="polite">
+                <div class="stat-value" id="countInProgress">0</div>
+                <div class="stat-label">در حال انجام</div>
+            </div>
+            <div class="stat" aria-live="polite">
+                <div class="stat-value" id="countDone">0</div>
+                <div class="stat-label">انجام شده</div>
+            </div>
+        </section>
+
+        <!-- Kanban board -->
+        <section class="grid" id="boardSection" style="margin-top:1rem; gap:1rem; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+            <!-- Column: انجام نشده -->
+            <article class="card" id="colTodo" data-status="todo" aria-labelledby="colTodoLabel">
+                <h2 id="colTodoLabel" class="sr-only">انجام نشده</h2>
+                <ul class="stack" id="listTodo" aria-live="polite"></ul>
+                <p class="empty" hidden>هیچ کاری وجود ندارد.</p>
+            </article>
+
+            <!-- Column: در حال انجام -->
+            <article class="card" id="colInProgress" data-status="inprogress" aria-labelledby="colInProgressLabel">
+                <h2 id="colInProgressLabel" class="sr-only">در حال انجام</h2>
+                <ul class="stack" id="listInProgress" aria-live="polite"></ul>
+                <p class="empty" hidden>هیچ کاری وجود ندارد.</p>
+            </article>
+
+            <!-- Column: انجام شده -->
+            <article class="card" id="colDone" data-status="done" aria-labelledby="colDoneLabel">
+                <h2 id="colDoneLabel" class="sr-only">انجام شده</h2>
+                <ul class="stack" id="listDone" aria-live="polite"></ul>
+                <p class="empty" hidden>هیچ کاری وجود ندارد.</p>
+            </article>
+        </section>
+
+        <!-- Settings panel (hidden by default) -->
+        <section id="settingsPanel" hidden class="stack" style="margin-top:1rem;">
+            <h2 class="sr-only">تنظیمات</h2>
+            <div class="field">
+                <label for="themeSelect">تم</label>
+                <select id="themeSelect" class="field-select">
+                    <option value="light">روشن</option>
+                    <option value="dark">تیره</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="languageSelect">زبان</label>
+                <select id="languageSelect" class="field-select">
+                    <option value="fa">فارسی</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast container -->
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <!-- Modal for add / edit task -->
+    <dialog id="taskModal" class="card" aria-labelledby="taskModalTitle">
+        <h2 id="taskModalTitle" class="sr-only">فرم کار</h2>
+        <form id="taskForm" novalidate>
+            <input type="hidden" id="taskId">
+            <div class="field">
+                <label for="taskTitle">عنوان</label>
+                <input type="text" id="taskTitle" class="field-input" required minlength="1">
+                <p class="error" hidden>عنوان الزامی است.</p>
+            </div>
+            <div class="field">
+                <label for="taskDescription">توضیح</label>
+                <textarea id="taskDescription" class="field-input" rows="3"></textarea>
+            </div>
+            <div class="row" style="gap:.5rem;">
+                <div class="field" style="flex:1;">
+                    <label for="taskPriority">اولویت</label>
+                    <select id="taskPriority" class="field-select">
+                        <option value="high">بالا</option>
+                        <option value="medium" selected>متوسط</option>
+                        <option value="low">پایین</option>
+                    </select>
+                </div>
+                <div class="field" style="flex:1;">
+                    <label for="taskDueDate">تاریخ مهلت</label>
+                    <input type="date" id="taskDueDate" class="field-input">
+                </div>
+            </div>
+            <div class="row" style="margin-top:1rem; gap:.5rem; justify-content:flex-end;">
+                <button type="button" id="deleteTaskBtn" class="btn btn-danger" hidden>حذف</button>
+                <button type="button" id="cancelTaskBtn" class="btn btn-ghost">لغو</button>
+                <button type="submit" id="saveTaskBtn" class="btn btn-primary">ذخیره</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+{
+  "title": "کلینیک دندان‌پزشکی لبخند",
+  "lang": "fa",
+  "dir": "rtl",
+  "vertical": "health",
+  "site_type": "intro",
+  "sections": [
+    "home",
+    "about",
+    "services",
+    "solutions",
+    "process",
+    "portfolio",
+    "case-studies",
+    "pricing",
+    "team",
+    "contact"
+  ],
+  "services": [
+    "ایمپلنت دندانی",
+    "ارتودنسی",
+    "سفیدکردن دندان",
+    "جراحی لثه",
+    "پیشگیری و بهداشت دهان",
+    "رادیوگرافی دیجیتال",
+    "مشاوره رایگان",
+    "پرستاری دندان"
+  ],
+  "design": {
+    "palette": {
+      "mode": "light",
+      "bg": "#f5f8fa",
+      "surface": "#e8eef3",
+      "card": "#ffffff",
+      "text": "#1a2328",
+      "muted": "#506a7c",
+      "primary": "#2978ad",
+      "accent": "#c6a210",
+      "line": "#cddbe4"
+    },
+    "type": "serif_authority",
+    "hero": "quiet_authority",
+    "photos": "pixabay"
+  },
+  "facts": {
+    "audience": "خانواده‌ها و بیماران تازه",
+    "goal": "",
+    "city": "",
+    "address": "",
+    "hours": "",
+    "numbers": [],
+    "marketing": true,
+    "form_endpoint": "",
+    "title": "کلینیک دندان‌پزشکی لبخند"
+  },
+  "ai": {
+    "engine": "ai",
+    "providers": [
+      "groq"
+    ],
+    "models": [
+      "openai/gpt-oss-120b"
+    ],
+    "latency_ms": 14792,
+    "schema_mode": "json_schema",
+    "notes": [
+      "1 توضیح سرویس کلمهٔ خودش را تکرار می‌کرد؛ جای آن جملهٔ خود برنامه نشست",
+      "audience از متن خودت حذف شد (در بریف نبود)",
+      "goal از متن خودت حذف شد (در بریف نبود)",
+      "1 فیلد به زبان بریف نوشته شده بود و استفاده نشد"
+    ],
+    "spec_fingerprint": "a225d54e0fda23d6",
+    "generated_at": 1792927818.2312112,
+    "ai_used": true,
+    "applied": {
+      "title": "کلینیک دندان‌پزشکی لبخند",
+      "tagline": "لبخندی سالم، آینده‌ای روشن",
+      "services": [
+        "ایمپلنت دندانی",
+        "ارتودنسی",
+        "سفیدکردن دندان",
+        "جراحی لثه",
+        "پیشگیری و بهداشت دهان",
+        "رادیوگرافی دیجیتال",
+        "مشاوره رایگان",
+        "پرستاری دندان"
+      ],
+      "palette": {
+        "mode": "light",
+        "primary": "#2978ad",
+        "accent": "#c6a210"
+      },
+      "hero": "quiet_authority",
+      "type": "serif_authority",
+      "copy_sentences": 22,
+      "page_purposes": [
+        "about",
+        "contact",
+        "home",
+        "services",
+        "team"
+      ]
+    },
+    "brand": "کلینیک دندان‌پزشکی لبخند",
+    "business_type": "کلینیک دندان‌پزشکی",
+    "unknown_fields": [
+      "قیمت‌گذاری خدمات",
+      "نقشه دقیق موقعیت",
+      "سیستم پرداخت آنلاین",
+      "نظرات بیماران",
+      "پروژه‌های ویژه",
+      "اطلاعات بیمه"
+    ]
+  },
+  "generated_at": 1792927834.1625354,
+  "version": "9.0.0"
+}

@@ -1,0 +1,286 @@
+{
+  "title": "برگ سبز",
+  "tagline": "طعم طبیعت در هر فنجان",
+  "lang": "fa",
+  "dir": "rtl",
+  "palette": {
+    "bg": "#14170c",
+    "surface": "#1f2414",
+    "primary": "#b6db6c",
+    "accent": "#d2b48c",
+    "text": "#f6f7f3",
+    "muted": "#b8c3a2",
+    "card": "#2a321b",
+    "danger": "#f43f5e",
+    "warn": "#f59e0b"
+  },
+  "products": [
+    {
+      "id": "p1",
+      "name": "دانهٔ قهوه عربیکا ۲۵۰ گرمی",
+      "price": 680000,
+      "category": "دانهٔ قهوه",
+      "badge": "",
+      "rating": null,
+      "stock": null,
+      "desc": "دانهٔ قهوه عربیکا ۲۵۰ گرمی از دستهٔ دانهٔ قهوه؛ انتخابی کاربردی برای استفادهٔ روزمره.",
+      "note": "قیمت و مشخصات «دانهٔ قهوه عربیکا ۲۵۰ گرمی» نمونه است؛ مقدار واقعی را در products.json وارد کنید.",
+      "sample": true
+    },
+    {
+      "id": "p2",
+      "name": "قهوهٔ اسپرسو آسیاب‌شده",
+      "price": 520000,
+      "category": "دانهٔ قهوه",
+      "badge": "",
+      "rating": null,
+      "stock": null,
+      "desc": "قهوهٔ اسپرسو آسیاب‌شده با کیفیت ساخت مناسب، در دستهٔ دانهٔ قهوه.",
+      "note": "قیمت و مشخصات «قهوهٔ اسپرسو آسیاب‌شده» نمونه است؛ مقدار واقعی را در products.json وارد کنید.",
+      "sample": true
+    },
+    {
+      "id": "p3",
+      "name": "فرنچ‌پرس ۶۰۰ میلی‌لیتر",
+      "price": 890000,
+      "category": "تجهیزات دم‌آوری",
+      "badge": "",
+      "rating": null,
+      "stock": null,
+      "desc": "فرنچ‌پرس ۶۰۰ میلی‌لیتر؛ یکی از پرکاربردترین اقلام دستهٔ تجهیزات دم‌آوری.",
+      "note": "قیمت و مشخصات «فرنچ‌پرس ۶۰۰ میلی‌لیتر» نمونه است؛ مقدار واقعی را در products.json وارد کنید.",
+      "sample": true
+    },
+    {
+      "id": "p4",
+      "name": "موکاپات سه‌کاپ",
+      "price": 1150000,
+      "category": "تجهیزات دم‌آوری",
+      "badge": "",
+      "rating": null,
+      "stock": null,
+      "desc": "موکاپات سه‌کاپ برای کسانی که در دستهٔ تجهیزات دم‌آوری دنبال گزینه‌ای مطمئن هستند.",
+      "note": "قیمت و مشخصات «موکاپات سه‌کاپ» نمونه است؛ مقدار واقعی را در products.json وارد کنید.",
+      "sample": true
+    },
+    {
+      "id": "p5",
+      "name": "آسیاب قهوهٔ دستی",
+      "price": 1450000,
+      "category": "تجهیزات دم‌آوری",
+      "badge": "",
+      "rating": null,
+      "stock": null,
+      "desc": "آسیاب قهوهٔ دستی از مجموعهٔ تجهیزات دم‌آوری، مناسب خرید شخصی یا هدیه.",
+      "note": "قیمت و مشخصات «آسیاب قهوهٔ دستی» نمونه است؛ مقدار واقعی را در products.json وارد کنید.",
+      "sample": true
+    },
+    {
+      "id": "p6",
+      "name": "فیلتر کاغذی V60 (۱۰۰ عدد)",
+      "price": 240000,
+      "category": "لوازم جانبی",
+      "badge": "",
+      "rating": null,
+      "stock": null,
+      "desc": "فیلتر کاغذی V60 (۱۰۰ عدد)؛ گزینه‌ای اقتصادی در دستهٔ لوازم جانبی.",
+      "note": "قیمت و مشخصات «فیلتر کاغذی V60 (۱۰۰ عدد)» نمونه است؛ مقدار واقعی را در products.json وارد کنید.",
+      "sample": true
+    }
+  ],
+  "categories": [
+    "تجهیزات دم‌آوری",
+    "دانهٔ قهوه",
+    "لوازم جانبی"
+  ],
+  "email": "",
+  "phone": "",
+  "currency": "تومان",
+  "currency_symbol": "",
+  "site_type": "shop",
+  "catalog_sample": true,
+  "site_url": "",
+  "order_endpoint": "",
+  "payment_enabled": false,
+  "form_endpoint": "",
+  "about_lines": [
+    "به راحتی محصول دلخواه را با فیلترهای دقیق پیدا کنید",
+    "فرم ساده ما سفارش شما را در چند کلیک ثبت می‌کند",
+    "تخفیف‌ها و بسته‌های ترکیبی مخصوص علاقه‌مندان به چای"
+  ],
+  "domain_label": "قهوه و تجهیزات دم‌آوری",
+  "_media": {
+    "source": "pixabay",
+    "hero": {
+      "src": "assets/img/shop-hero.jpg",
+      "w": 1600,
+      "h": 1000,
+      "small": "assets/img/shop-hero-sm.jpg"
+    },
+    "items": {
+      "p1": {
+        "card": {
+          "src": "assets/img/product-p1.jpg",
+          "w": 800,
+          "h": 600
+        },
+        "large": {
+          "src": "assets/img/product-p1-lg.jpg",
+          "w": 1000,
+          "h": 1000
+        }
+      },
+      "p2": {
+        "card": {
+          "src": "assets/img/product-p2.jpg",
+          "w": 800,
+          "h": 600
+        },
+        "large": {
+          "src": "assets/img/product-p2-lg.jpg",
+          "w": 1000,
+          "h": 1000
+        }
+      },
+      "p3": {
+        "card": {
+          "src": "assets/img/product-p3.jpg",
+          "w": 800,
+          "h": 600
+        },
+        "large": {
+          "src": "assets/img/product-p3-lg.jpg",
+          "w": 1000,
+          "h": 1000
+        }
+      },
+      "p4": {
+        "card": {
+          "src": "assets/img/product-p4.jpg",
+          "w": 800,
+          "h": 600
+        },
+        "large": {
+          "src": "assets/img/product-p4-lg.jpg",
+          "w": 1000,
+          "h": 1000
+        }
+      },
+      "p5": {
+        "card": {
+          "src": "assets/img/product-p5.jpg",
+          "w": 800,
+          "h": 600
+        },
+        "large": {
+          "src": "assets/img/product-p5-lg.jpg",
+          "w": 1000,
+          "h": 1000
+        }
+      },
+      "p6": {
+        "card": {
+          "src": "assets/img/product-p6.jpg",
+          "w": 800,
+          "h": 600
+        },
+        "large": {
+          "src": "assets/img/product-p6-lg.jpg",
+          "w": 1000,
+          "h": 1000
+        }
+      }
+    },
+    "credits": [
+      {
+        "author": "zhxj560",
+        "license": "Pixabay Content License",
+        "license_url": "https://pixabay.com/service/license-summary/",
+        "source_url": "https://pixabay.com/photos/coffee-caffeine-organic-background-4512564/",
+        "site": "Pixabay"
+      },
+      {
+        "author": "Couleur",
+        "license": "Pixabay Content License",
+        "license_url": "https://pixabay.com/service/license-summary/",
+        "source_url": "https://pixabay.com/photos/coffee-coffee-beans-beans-roasted-3392168/",
+        "site": "Pixabay"
+      },
+      {
+        "author": "jarmoluk",
+        "license": "Pixabay Content License",
+        "license_url": "https://pixabay.com/service/license-summary/",
+        "source_url": "https://pixabay.com/photos/tube-bender-work-machine-technology-2819137/",
+        "site": "Pixabay"
+      },
+      {
+        "author": "eliasfalla",
+        "license": "Pixabay Content License",
+        "license_url": "https://pixabay.com/service/license-summary/",
+        "source_url": "https://pixabay.com/photos/coffee-coffee-grinds-cafe-206142/",
+        "site": "Pixabay"
+      },
+      {
+        "author": "cocoparisienne",
+        "license": "Pixabay Content License",
+        "license_url": "https://pixabay.com/service/license-summary/",
+        "source_url": "https://pixabay.com/photos/coffee-coffee-cup-cup-drink-beans-2714970/",
+        "site": "Pixabay"
+      },
+      {
+        "author": "422737",
+        "license": "Pixabay Content License",
+        "license_url": "https://pixabay.com/service/license-summary/",
+        "source_url": "https://pixabay.com/photos/motorcycle-engine-metal-motor-459594/",
+        "site": "Pixabay"
+      },
+      {
+        "author": "NoName_13",
+        "license": "Pixabay Content License",
+        "license_url": "https://pixabay.com/service/license-summary/",
+        "source_url": "https://pixabay.com/photos/coffee-beans-cup-coffee-cup-coffee-2258839/",
+        "site": "Pixabay"
+      }
+    ],
+    "notes": [
+      "6 از 6 محصول عکس واقعی گرفت (pixabay)."
+    ]
+  },
+  "_og_image": "assets/img/shop-hero.jpg",
+  "ai": {
+    "engine": "ai",
+    "providers": [
+      "groq"
+    ],
+    "models": [
+      "openai/gpt-oss-120b"
+    ],
+    "latency_ms": 21758,
+    "schema_mode": "json_schema",
+    "notes": [
+      "1 توضیح سرویس کلمهٔ خودش را تکرار می‌کرد؛ جای آن جملهٔ خود برنامه نشست",
+      "goal از متن خودت حذف شد (در بریف نبود)",
+      "6 محصول پیشنهاد مدل است و در بریف نبود (نمونه علامت خورد)"
+    ],
+    "spec_fingerprint": "bb7d4e81052fe47c",
+    "generated_at": 1792900632.8690543,
+    "ai_used": true,
+    "applied": {
+      "title": "برگ سبز",
+      "tagline": "طعم طبیعت در هر فنجان",
+      "palette": {
+        "primary": "#b6db6c",
+        "accent": "#d2b48c"
+      },
+      "about_lines": 3
+    },
+    "brand": "برگ سبز",
+    "business_type": "فروشگاه اینترنتی چای و دمنوش",
+    "unknown_fields": [
+      "لوگو",
+      "شبکه‌های اجتماعی"
+    ]
+  },
+  "generated_at": 1792900651.3449502,
+  "version": "8.6.8-shop"
+}

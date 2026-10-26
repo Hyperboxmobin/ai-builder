@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head><script>(function(){function mk(){var d=new Map();return{get length(){return d.size},key:function(i){return Array.from(d.keys())[i]??null},getItem:function(k){k=String(k);return d.has(k)?d.get(k):null},setItem:function(k,v){d.set(String(k),String(v))},removeItem:function(k){d.delete(String(k))},clear:function(){d.clear()}}}['localStorage','sessionStorage'].forEach(function(n){try{window[n].length}catch(e){try{Object.defineProperty(window,n,{value:mk(),configurable:true})}catch(_){}}});var sw={controller:null,ready:new Promise(function(){}),register:function(){return Promise.reject(new DOMException('Service workers are off in preview','SecurityError'))},getRegistration:function(){return Promise.resolve(undefined)},getRegistrations:function(){return Promise.resolve([])},addEventListener:function(){},removeEventListener:function(){}};try{if(!navigator.serviceWorker)throw 0}catch(e){try{Object.defineProperty(navigator,'serviceWorker',{value:sw,configurable:true})}catch(_){}}})();</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'self' data: blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>دخل و خرج</title>
+    <link rel="stylesheet" href="assets/base.css">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="app.js"></script>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#4f46e5">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<script src="pwa.js" defer></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <h1 class="app-title">دخل و خرج</h1>
+        <nav class="app-nav" aria-label="منوی اصلی">
+            <button class="btn btn-ghost" data-view="dashboard" aria-current="page">داشبورد</button>
+            <button class="btn btn-ghost" data-view="transaction-form">ثبت تراکنش</button>
+            <button class="btn btn-ghost" data-view="category-manager">دسته‌بندی‌ها</button>
+            <button class="btn btn-ghost" data-view="monthly-report">گزارش ماهانه</button>
+            <button class="btn btn-ghost" data-view="chart-view">نمودار</button>
+            <button class="btn btn-ghost" data-view="settings">تنظیمات</button>
+        </nav>
+    </header>
+
+    <!-- Main content -->
+    <main class="container" id="app-main">
+        <!-- Dashboard -->
+        <section id="dashboard" class="stack">
+            <div class="grid">
+                <div class="card stat">
+                    <div class="stat-value" id="income-total">۰</div>
+                    <div class="stat-label">درآمد ماه جاری</div>
+                </div>
+                <div class="card stat">
+                    <div class="stat-value" id="expense-total">۰</div>
+                    <div class="stat-label">هزینه ماه جاری</div>
+                </div>
+                <div class="card stat">
+                    <div class="stat-value" id="balance-total">۰</div>
+                    <div class="stat-label">مانده</div>
+                </div>
+            </div>
+            <div class="card" id="dashboard-chart-wrapper">
+                <canvas id="dashboard-chart" aria-label="نمودار درآمد و هزینه"></canvas>
+            </div>
+        </section>
+
+        <!-- Transaction Form (Add / Edit) -->
+        <section id="transaction-form" class="stack" hidden>
+            <h2 class="card">ثبت / ویرایش تراکنش</h2>
+            <form id="transaction-form-element" class="stack">
+                <input type="hidden" name="id" id="tx-id">
+                <div class="field">
+                    <label for="tx-type">نوع</label>
+                    <select id="tx-type" name="type" required>
+                        <option value="income">درآمد</option>
+                        <option value="expense">هزینه</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="tx-amount">مبلغ (تومان)</label>
+                    <input type="number" id="tx-amount" name="amount" min="0" step="1" required>
+                </div>
+                <div class="field">
+                    <label for="tx-date">تاریخ</label>
+                    <input type="date" id="tx-date" name="date" required>
+                </div>
+                <div class="field">
+                    <label for="tx-category">دسته‌بندی</label>
+                    <select id="tx-category" name="categoryId" required></select>
+                </div>
+                <div class="field">
+                    <label for="tx-note">یادداشت (اختیاری)</label>
+                    <input type="text" id="tx-note" name="note" maxlength="100">
+                </div>
+                <div class="row">
+                    <button type="submit" class="btn btn-primary">ذخیره</button>
+                    <button type="button" class="btn btn-ghost" data-action="cancel-form">لغو</button>
+                </div>
+                <p id="form-error" class="error" hidden></p>
+            </form>
+        </section>
+
+        <!-- Category Manager -->
+        <section id="category-manager" class="stack" hidden>
+            <h2 class="card">مدیریت دسته‌بندی‌ها</h2>
+            <div class="card">
+                <table class="table-wrap">
+                    <thead>
+                        <tr>
+                            <th>نام</th>
+                            <th class="sr-only">عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="category-list"></tbody>
+                </table>
+                <p id="category-empty" class="empty" hidden>هیچ دسته‌بندی‌ای وجود ندارد.</p>
+            </div>
+            <form id="category-form" class="field stack">
+                <label for="category-name">نام دسته‌بندی</label>
+                <input type="text" id="category-name" required>
+                <button type="submit" class="btn btn-primary">افزودن</button>
+                <p id="category-error" class="error" hidden></p>
+            </form>
+        </section>
+
+        <!-- Monthly Report -->
+        <section id="monthly-report" class="stack" hidden>
+            <h2 class="card">گزارش ماهانه</h2>
+            <div class="row">
+                <label for="report-month">ماه</label>
+                <input type="month" id="report-month">
+                <button class="btn btn-primary" data-action="load-report">نمایش</button>
+            </div>
+            <div class="card table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>تاریخ</th>
+                            <th>نوع</th>
+                            <th>دسته‌بندی</th>
+                            <th>مبلغ</th>
+                            <th>یادداشت</th>
+                            <th class="sr-only">عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="report-body"></tbody>
+                </table>
+                <p id="report-empty" class="empty" hidden>هیچ تراکنشی برای این ماه ثبت نشده است.</p>
+            </div>
+            <div class="grid">
+                <div class="card stat">
+                    <div class="stat-value" id="report-income-total">۰</div>
+                    <div class="stat-label">درآمد</div>
+                </div>
+                <div class="card stat">
+                    <div class="stat-value" id="report-expense-total">۰</div>
+                    <div class="stat-label">هزینه</div>
+                </div>
+                <div class="card stat">
+                    <div class="stat-value" id="report-balance-total">۰</div>
+                    <div class="stat-label">مانده</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chart View -->
+        <section id="chart-view" class="stack" hidden>
+            <h2 class="card">نمودار مقایسه‌ای</h2>
+            <div class="row">
+                <label for="chart-type">نوع نمودار</label>
+                <select id="chart-type">
+                    <option value="bar">ستونی</option>
+                    <option value="line">خطی</option>
+                </select>
+                <label for="chart-range">بازه زمانی</label>
+                <input type="date" id="chart-start">
+                <input type="date" id="chart-end">
+                <button class="btn btn-primary" data-action="draw-chart">نمایش</button>
+            </div>
+            <div class="card" id="chart-container">
+                <canvas id="main-chart" aria-label="نمودار درآمد و هزینه"></canvas>
+            </div>
+        </section>
+
+        <!-- Settings -->
+        <section id="settings" class="stack" hidden>
+            <h2 class="card">تنظیمات</h2>
+            <div class="card stack">
+                <h3 class="badge">پشتیبان‌گیری</h3>
+                <button class="btn btn-primary" data-action="export-data">دریافت فایل JSON</button>
+            </div>
+            <div class="card stack">
+                <h3 class="badge">بازیابی</h3>
+                <input type="file" id="import-file" accept="application/json">
+                <button class="btn btn-primary" data-action="import-data">بارگذاری</button>
+                <p id="import-error" class="error" hidden></p>
+            </div>
+            <div class="card stack">
+                <h3 class="badge">ظاهر</h3>
+                <label class="row">
+                    <input type="radio" name="theme" value="light" id="theme-light">
+                    روشن
+                </label>
+                <label class="row">
+                    <input type="radio" name="theme" value="dark" id="theme-dark">
+                    تاریک
+                </label>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast for status messages -->
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <!-- Transaction detail modal -->
+    <dialog id="detail-modal" class="card" hidden>
+        <h2 class="badge">جزئیات تراکنش</h2>
+        <div id="detail-content" class="stack"></div>
+        <div class="row">
+            <button class="btn btn-primary" data-action="close-detail">بستن</button>
+        </div>
+    </dialog>
+
+    <!-- Bottom navigation for mobile (optional) -->
+    <nav class="bottom-nav" aria-label="منوی پایین">
+        <button class="btn btn-ghost" data-view="dashboard" aria-label="داشبورد"></button>
+        <button class="btn btn-ghost" data-view="transaction-form" aria-label="ثبت تراکنش"></button>
+        <button class="btn btn-ghost" data-view="category-manager" aria-label="دسته‌بندی‌ها"></button>
+        <button class="btn btn-ghost" data-view="monthly-report" aria-label="گزارش ماهانه"></button>
+        <button class="btn btn-ghost" data-view="settings" aria-label="تنظیمات"></button>
+    </nav>
+</body>
+</html>

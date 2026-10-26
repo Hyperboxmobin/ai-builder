@@ -1,0 +1,114 @@
+{
+  "title": "آتلیه نگاره",
+  "lang": "fa",
+  "dir": "rtl",
+  "vertical": "tech",
+  "site_type": "intro",
+  "sections": [
+    "home",
+    "about",
+    "services",
+    "solutions",
+    "process",
+    "portfolio",
+    "case-studies",
+    "pricing",
+    "team",
+    "contact"
+  ],
+  "services": [
+    "عکاسی عروسی",
+    "عکاسی کودک",
+    "عکاسی صنعتی",
+    "بسته عروسی",
+    "عکاسی پرتره شخصی",
+    "عکاسی محصول",
+    "ویرایش حرفه‌ای",
+    "مشاوره نورپردازی"
+  ],
+  "design": {
+    "palette": {
+      "mode": "light",
+      "bg": "#f5f7fa",
+      "surface": "#e8edf2",
+      "card": "#ffffff",
+      "text": "#1a2128",
+      "muted": "#50667c",
+      "primary": "#2c3e50",
+      "accent": "#bf2717",
+      "line": "#ced9e4"
+    },
+    "type": "humanist_service",
+    "hero": "gallery_first",
+    "photos": "pixabay"
+  },
+  "facts": {
+    "audience": "زوج‌های جوان و شرکت‌ها",
+    "goal": "",
+    "city": "",
+    "address": "",
+    "hours": "",
+    "numbers": [],
+    "marketing": true,
+    "form_endpoint": "",
+    "title": "آتلیه نگاره"
+  },
+  "ai": {
+    "engine": "ai",
+    "providers": [
+      "groq"
+    ],
+    "models": [
+      "openai/gpt-oss-120b"
+    ],
+    "latency_ms": 16518,
+    "schema_mode": "json_schema",
+    "notes": [
+      "goal از متن خودت حذف شد (در بریف نبود)",
+      "1 فیلد به زبان بریف نوشته شده بود و استفاده نشد"
+    ],
+    "spec_fingerprint": "c2b55f110e901284",
+    "generated_at": 1792900597.3762846,
+    "ai_used": true,
+    "applied": {
+      "title": "آتلیه نگاره",
+      "tagline": "لحظه‌های شما، هنر ما",
+      "services": [
+        "عکاسی عروسی",
+        "عکاسی کودک",
+        "عکاسی صنعتی",
+        "بسته عروسی",
+        "عکاسی پرتره شخصی",
+        "عکاسی محصول",
+        "ویرایش حرفه‌ای",
+        "مشاوره نورپردازی"
+      ],
+      "palette": {
+        "mode": "light",
+        "primary": "#2c3e50",
+        "accent": "#bf2717"
+      },
+      "hero": "gallery_first",
+      "type": "humanist_service",
+      "copy_sentences": 25,
+      "page_purposes": [
+        "about",
+        "contact",
+        "home",
+        "portfolio",
+        "pricing",
+        "services"
+      ]
+    },
+    "brand": "آتلیه نگاره",
+    "business_type": "آتلیه عکاسی",
+    "unknown_fields": [
+      "قیمت‌های دقیق",
+      "زمان‌های کاری",
+      "نحوه پرداخت",
+      "پروژه‌های خاص"
+    ]
+  },
+  "generated_at": 1792900609.8711538,
+  "version": "9.0.0"
+}

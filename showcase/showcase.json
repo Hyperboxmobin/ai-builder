@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-25T12:24:51.215Z",
+  "generated_at": "2026-10-26T03:26:33.087Z",
   "items": [
     {
       "name": "شرکت ساختمانی پایا",
@@ -10,7 +10,8 @@
       "audit": 100,
       "fixed_after_review": false,
       "image": "showcase/3a470ce9-v1.jpg",
-      "mobile": false
+      "mobile": false,
+      "demo": "demos/3a470ce9-v1/index.html"
     },
     {
       "name": "کلینیک دندان‌پزشکی لبخند",
@@ -21,7 +22,8 @@
       "audit": 100,
       "fixed_after_review": false,
       "image": "showcase/e7a31a8a-v1.jpg",
-      "mobile": false
+      "mobile": false,
+      "demo": "demos/e7a31a8a-v1/index.html"
     },
     {
       "name": "آتلیه نگاره",
@@ -32,7 +34,8 @@
       "audit": 100,
       "fixed_after_review": false,
       "image": "showcase/1cad0332-v1.jpg",
-      "mobile": false
+      "mobile": false,
+      "demo": "demos/1cad0332-v1/index.html"
     },
     {
       "name": "گالری صنایع دستی ترمه",
@@ -43,7 +46,8 @@
       "audit": 100,
       "fixed_after_review": false,
       "image": "showcase/ccfbc61c-v1.jpg",
-      "mobile": false
+      "mobile": false,
+      "demo": "demos/ccfbc61c-v1/index.html"
     },
     {
       "name": "کتاب‌سرای نیلوفر",
@@ -54,7 +58,8 @@
       "audit": 100,
       "fixed_after_review": false,
       "image": "showcase/29908bd3-v1.jpg",
-      "mobile": false
+      "mobile": false,
+      "demo": "demos/29908bd3-v1/index.html"
     },
     {
       "name": "برگ سبز",
@@ -65,7 +70,8 @@
       "audit": 100,
       "fixed_after_review": false,
       "image": "showcase/99c9506c-v1.jpg",
-      "mobile": false
+      "mobile": false,
+      "demo": "demos/99c9506c-v1/index.html"
     },
     {
       "name": "تخته کار تیم",
@@ -76,7 +82,8 @@
       "audit": null,
       "fixed_after_review": true,
       "image": "showcase/8fa48a7d-v3.jpg",
-      "mobile": false
+      "mobile": false,
+      "demo": "demos/8fa48a7d-v3/index.html"
     },
     {
       "name": "دخل و خرج",
@@ -87,7 +94,32 @@
       "audit": null,
       "fixed_after_review": false,
       "image": "showcase/328193c1-v1.jpg",
-      "mobile": false
+      "mobile": false,
+      "demo": "demos/328193c1-v1/index.html"
+    },
+    {
+      "name": "عادت‌سنج",
+      "kind": "mobile",
+      "kind_fa": "اپ موبایل (PWA)",
+      "seconds": 2016,
+      "built_at": "2026-10-25T13:26:48.287Z",
+      "audit": null,
+      "fixed_after_review": false,
+      "image": "showcase/18ad8014-v1.jpg",
+      "mobile": true,
+      "demo": "demos/18ad8014-v1/index.html"
+    },
+    {
+      "name": "حدس عدد",
+      "kind": "game",
+      "kind_fa": "بازی",
+      "seconds": 2635,
+      "built_at": "2026-10-25T15:48:06.730Z",
+      "audit": null,
+      "fixed_after_review": false,
+      "image": "showcase/51bf6847-v1.jpg",
+      "mobile": false,
+      "demo": "demos/51bf6847-v1/index.html"
     }
   ]
 }

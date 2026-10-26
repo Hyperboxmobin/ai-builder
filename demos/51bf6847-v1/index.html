@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head><script>(function(){function mk(){var d=new Map();return{get length(){return d.size},key:function(i){return Array.from(d.keys())[i]??null},getItem:function(k){k=String(k);return d.has(k)?d.get(k):null},setItem:function(k,v){d.set(String(k),String(v))},removeItem:function(k){d.delete(String(k))},clear:function(){d.clear()}}}['localStorage','sessionStorage'].forEach(function(n){try{window[n].length}catch(e){try{Object.defineProperty(window,n,{value:mk(),configurable:true})}catch(_){}}});var sw={controller:null,ready:new Promise(function(){}),register:function(){return Promise.reject(new DOMException('Service workers are off in preview','SecurityError'))},getRegistration:function(){return Promise.resolve(undefined)},getRegistrations:function(){return Promise.resolve([])},addEventListener:function(){},removeEventListener:function(){}};try{if(!navigator.serviceWorker)throw 0}catch(e){try{Object.defineProperty(navigator,'serviceWorker',{value:sw,configurable:true})}catch(_){}}})();</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'self' data: blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حدس عدد ۱ تا ۱۰۰</title>
+    <link rel="stylesheet" href="assets/base.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <script src="pwa.js" defer></script>
+</head>
+<body>
+<main id="app-main">
+<div data-main id="app-main" aria-label="main content">
+    <header class="app-header" aria-label="main header">
+        <div class="container row">
+            <h1>حدس عدد</h1>
+            <nav class="app-nav" id="main-nav" aria-label="main navigation">
+                <button class="btn btn-ghost" data-nav="home" aria-current="page">خانه</button>
+                <button class="btn btn-ghost" data-nav="settings">تنظیمات</button>
+                <button class="btn btn-ghost" data-nav="help">راهنما</button>
+            </nav>
+        </div>
+    </header>
+
+    <div data-main class="container" aria-label="main content">
+        <!-- Welcome Screen -->
+        <section id="screen-home" class="screen" hidden>
+            <div class="card stack">
+                <h2>به بازی حدس عدد خوش آمدید!</h2>
+                <p class="muted">من عددی بین ۱ تا ۱۰۰ را انتخاب کرده‌ام. آیا می‌توانید آن را حدس بزنید؟</p>
+                <button class="btn btn-primary" data-action="start-game">شروع بازی</button>
+                <button class="btn btn-ghost" data-nav="settings">تنظیمات دشواری</button>
+            </div>
+        </section>
+
+        <!-- Game Screen -->
+        <section id="screen-game" class="screen" hidden>
+            <div class="card stack">
+                <div class="row">
+                    <div class="stat">
+                        <span id="game-attempts" class="stat-value">۰</span>
+                        <span class="stat-label">تلاش‌ها</span>
+                    </div>
+                    <div class="stat">
+                        <span id="game-timer" class="stat-value">۰۰:۰۰</span>
+                        <span class="stat-label">زمان</span>
+                    </div>
+                    <button class="btn btn-sm" id="btn-pause" data-action="toggle-pause">توقف</button>
+                </div>
+
+                <div class="field">
+                    <label for="guess-input">حدس شما را وارد کنید:</label>
+                    <input type="number" id="guess-input" min="1" max="100" placeholder="مثلاً ۴۲">
+                </div>
+
+                <button class="btn btn-primary" data-action="submit-guess">بررسی حدس</button>
+                
+                <div id="game-feedback" class="hint" aria-live="polite">
+                    عددی را وارد کنید و دکمه بررسی را بزنید.
+                </div>
+
+                <div class="row">
+                    <button class="btn btn-ghost btn-sm" data-action="restart-game">شروع مجدد</button>
+                    <button class="btn btn-danger btn-sm" data-nav="home">خروج</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Screen -->
+        <section id="screen-results" class="screen" hidden>
+            <div class="card stack">
+                <h2 id="result-title">تبریک!</h2>
+                <div class="grid">
+                    <div class="stat">
+                        <span id="result-attempts" class="stat-value">۰</span>
+                        <span class="stat-label">تلاش این دور</span>
+                    </div>
+                    <div class="stat">
+                        <span id="result-best" class="stat-value">۰</span>
+                        <span class="stat-label">بهترین رکورد</span>
+                    </div>
+                </div>
+
+                <h3>تاریخچه ۵ بازی اخیر</h3>
+                <div class="table-wrap">
+                    <table id="history-table">
+                        <thead>
+                            <tr>
+                                <th>رتبه</th>
+                                <th>تعداد تلاش</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-body">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <button class="btn btn-primary" data-action="start-game">بازی دوباره</button>
+                <button class="btn btn-ghost" data-nav="home">بازگشت به منو</button>
+            </div>
+        </section>
+
+        <!-- Settings Screen -->
+        <section id="screen-settings" class="screen" hidden>
+            <div class="card stack">
+                <h2>تنظیمات بازی</h2>
+                
+                <div class="field">
+                    <label for="difficulty-select">سطح دشواری:</label>
+                    <select id="difficulty-select">
+                        <option value="easy">آسان (بدون محدودیت زمان)</option>
+                        <option value="medium">متوسط (۲ دقیقه)</option>
+                        <option value="hard">سخت (۱ دقیقه)</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="theme-select">تم ظاهری:</label>
+                    <select id="theme-select">
+                        <option value="default">پیش‌فرض</option>
+                        <option value="dark">تیره</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary" data-action="save-settings">ذخیره تنظیمات</button>
+                <button class="btn btn-ghost" data-nav="home">بازگشت</button>
+            </div>
+        </section>
+
+        <!-- Help Screen -->
+        <section id="screen-help" class="screen" hidden>
+            <div class="card stack">
+                <h2>راهنمای بازی</h2>
+                <ul class="muted">
+                    <li>سیستم یک عدد تصادفی بین ۱ تا ۱۰۰ انتخاب می‌کند.</li>
+                    <li>شما باید با حدس زدن، عدد را پیدا کنید.</li>
+                    <li>بعد از هر حدس، بازی به شما می‌گوید عدد واقعی <strong>بزرگ‌تر</strong> یا <strong>کوچک‌تر</strong> از حدس شماست.</li>
+                    <li>هدف این است که با کمترین تعداد تلاش ممکن، عدد را پیدا کنید.</li>
+                    <li>در حالت‌های متوسط و سخت، زمان محدودی برای پاسخ دادن دارید.</li>
+                </ul>
+                <button class="btn btn-primary" data-nav="home">متوجه شدم</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast" hidden></div>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="bottom-nav" aria-label="mobile bottom navigation">
+        <button class="btn btn-ghost" data-nav="home">خانه</button>
+        <button class="btn btn-ghost" data-nav="settings">تنظیمات</button>
+        <button class="btn btn-ghost" data-nav="help">راهنما</button>
+    </nav>
+</div>
+
+</main></body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head><script>(function(){function mk(){var d=new Map();return{get length(){return d.size},key:function(i){return Array.from(d.keys())[i]??null},getItem:function(k){k=String(k);return d.has(k)?d.get(k):null},setItem:function(k,v){d.set(String(k),String(v))},removeItem:function(k){d.delete(String(k))},clear:function(){d.clear()}}}['localStorage','sessionStorage'].forEach(function(n){try{window[n].length}catch(e){try{Object.defineProperty(window,n,{value:mk(),configurable:true})}catch(_){}}});var sw={controller:null,ready:new Promise(function(){}),register:function(){return Promise.reject(new DOMException('Service workers are off in preview','SecurityError'))},getRegistration:function(){return Promise.resolve(undefined)},getRegistrations:function(){return Promise.resolve([])},addEventListener:function(){},removeEventListener:function(){}};try{if(!navigator.serviceWorker)throw 0}catch(e){try{Object.defineProperty(navigator,'serviceWorker',{value:sw,configurable:true})}catch(_){}}})();</script>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'self' data: blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+<title>عادت‌سنج</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="styles.css">
+<script defer src="app.js"></script>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#4f46e5">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<script src="pwa.js" defer></script>
+</head>
+<body>
+<header class="app-header">
+  <h1 class="app-title">عادت‌سنج</h1>
+  <nav class="app-nav" aria-label="منوی اصلی">
+    <button data-screen="home" aria-current="page" class="btn btn-ghost">خانه</button>
+    <button data-screen="add" class="btn btn-ghost">افزودن</button>
+    <button data-screen="settings" class="btn btn-ghost">تنظیمات</button>
+    <button data-screen="about" class="btn btn-ghost">درباره</button>
+  </nav>
+</header>
+
+<main class="container" id="app">
+  <!-- صفحه اصلی -->
+  <section id="home" data-screen="home" class="screen">
+    <h2 class="stat-label">عادات روزانه</h2>
+    <div id="habit-list" class="grid stack" aria-live="polite"></div>
+    <div id="empty-habits" class="empty" hidden>
+      <p>هیچ عادت اضافه نشده است. روی «افزودن» کلیک کنید.</p>
+    </div>
+  </section>
+
+  <!-- صفحه افزودن/ویرایش عادت -->
+  <section id="add" data-screen="add" class="screen" hidden>
+    <h2 id="form-title" class="stat-label">افزودن عادت</h2>
+    <form id="habit-form" class="stack" novalidate>
+      <div class="field">
+        <label for="habit-title">عنوان</label>
+        <input type="text" id="habit-title" name="title" required>
+      </div>
+      <div class="field">
+        <label for="habit-description">توضیح</label>
+        <textarea id="habit-description" name="description"></textarea>
+      </div>
+      <div class="field">
+        <label for="habit-icon">آیکون (متن یا ایموجی)</label>
+        <input type="text" id="habit-icon" name="icon" placeholder="مثلاً 📚">
+      </div>
+      <div class="field">
+        <label for="habit-color">رنگ</label>
+        <input type="color" id="habit-color" name="color" value="#ff5722">
+      </div>
+      <div class="row stack">
+        <button type="submit" class="btn btn-primary" data-action="save-habit">ذخیره</button>
+        <button type="button" class="btn btn-ghost" data-action="cancel">انصراف</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- صفحه جزئیات عادت -->
+  <section id="detail" data-screen="detail" class="screen" hidden>
+    <h2 id="detail-title" class="stat-label"></h2>
+    <p id="detail-description" class="muted"></p>
+    <div class="row stack">
+      <div class="stat">
+        <div class="stat-value" id="current-streak"></div>
+        <div class="stat-label">رکورد جاری</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="max-streak"></div>
+        <div class="stat-label">بیشترین رکورد</div>
+      </div>
+    </div>
+    <button class="btn btn-primary" data-action="check-habit">تیک زدن</button>
+    <button class="btn btn-ghost" data-action="edit-habit">ویرایش</button>
+    <button class="btn btn-danger" data-action="delete-habit">حذف</button>
+    <h3 class="stat-label">تاریخچه</h3>
+    <div class="table-wrap">
+      <table id="history-table">
+        <thead>
+          <tr><th>تاریخ</th><th>وضعیت</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <button class="btn btn-ghost" data-action="back-to-home">بازگشت</button>
+  </section>
+
+  <!-- صفحه تنظیمات -->
+  <section id="settings" data-screen="settings" class="screen" hidden>
+    <h2 class="stat-label">تنظیمات</h2>
+    <form id="settings-form" class="stack">
+      <div class="field">
+        <label for="theme-select">تم</label>
+        <select id="theme-select" name="theme">
+          <option value="light">روشن</option>
+          <option value="dark">تیره</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="notifications-toggle">اعلان‌های روزانه</label>
+        <input type="checkbox" id="notifications-toggle" name="notificationsEnabled">
+      </div>
+      <div class="field">
+        <label for="sync-toggle">همگام‌سازی در چند دستگاه</label>
+        <input type="checkbox" id="sync-toggle" name="syncEnabled">
+      </div>
+      <button type="submit" class="btn btn-primary" data-action="save-settings">ذخیره</button>
+    </form>
+  </section>
+
+  <!-- صفحه درباره/راهنما -->
+  <section id="about" data-screen="about" class="screen" hidden>
+    <h2 class="stat-label">درباره عادت‌سنج</h2>
+    <p>این اپلیکیشن یک ابزار ساده برای پیگیری عادات روزانه شماست. با افزودن عادات، تیک زدن هر روز و مشاهده رکوردهای پیاپی، می‌توانید به راحتی پیشرفت خود را دنبال کنید.</p>
+    <p>این اپلیکیشن به صورت PWA نصب می‌شود و بدون نیاز به اینترنت کار می‌کند. داده‌ها در مرورگر ذخیره می‌شوند و در صورت فعال بودن، می‌توانند در چند دستگاه همگام‌سازی شوند.</p>
+  </section>
+</main>
+
+<div id="toast" class="toast" aria-live="polite" role="status"></div>
+
+<footer class="app-footer">
+  <p class="muted">© 2026 عادت‌سنج</p>
+</footer>
+</body>
+</html>

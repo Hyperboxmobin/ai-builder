@@ -1,0 +1,105 @@
+{
+  "title": "شرکت ساختمانی پایا",
+  "lang": "fa",
+  "dir": "rtl",
+  "vertical": "construction",
+  "site_type": "intro",
+  "sections": [
+    "home",
+    "about",
+    "services",
+    "solutions",
+    "process",
+    "portfolio",
+    "case-studies",
+    "pricing",
+    "team",
+    "contact"
+  ],
+  "services": [
+    "طراحی معماری",
+    "نقشه‌کشی مهندسی",
+    "ساخت و ساز عمومی",
+    "بازسازی و نوسازی",
+    "مدیریت پروژه"
+  ],
+  "design": {
+    "palette": {
+      "mode": "light",
+      "bg": "#f5f6fa",
+      "surface": "#e8ebf3",
+      "card": "#ffffff",
+      "text": "#1a1e28",
+      "muted": "#505c7c",
+      "primary": "#2e3a59",
+      "accent": "#c19215",
+      "line": "#cdd4e4"
+    },
+    "type": "serif_authority",
+    "hero": "split_trust",
+    "photos": "pixabay"
+  },
+  "facts": {
+    "audience": "صاحبان ملک و سرمایه‌گذاران",
+    "goal": "",
+    "city": "",
+    "address": "",
+    "hours": "",
+    "numbers": [],
+    "marketing": true,
+    "form_endpoint": "",
+    "title": "شرکت ساختمانی پایا"
+  },
+  "ai": {
+    "engine": "ai",
+    "providers": [
+      "groq"
+    ],
+    "models": [
+      "openai/gpt-oss-120b"
+    ],
+    "latency_ms": 40205,
+    "schema_mode": "json_schema",
+    "notes": [
+      "goal از متن خودت حذف شد (در بریف نبود)"
+    ],
+    "spec_fingerprint": "a899c25a6bb39035",
+    "generated_at": 1792927876.8092132,
+    "ai_used": true,
+    "applied": {
+      "title": "شرکت ساختمانی پایا",
+      "tagline": "پایه‌ای برای آینده‌سازان",
+      "services": [
+        "طراحی معماری",
+        "نقشه‌کشی مهندسی",
+        "ساخت و ساز عمومی",
+        "بازسازی و نوسازی",
+        "مدیریت پروژه"
+      ],
+      "palette": {
+        "mode": "light",
+        "primary": "#2e3a59",
+        "accent": "#c19215"
+      },
+      "hero": "split_trust",
+      "type": "serif_authority",
+      "copy_sentences": 25,
+      "page_purposes": [
+        "about",
+        "contact",
+        "home",
+        "portfolio",
+        "services",
+        "team"
+      ]
+    },
+    "brand": "شرکت ساختمانی پایا",
+    "business_type": "ساخت و بازسازی",
+    "unknown_fields": [
+      "قیمت‌گذاری آنلاین",
+      "سیستم پرداخت"
+    ]
+  },
+  "generated_at": 1792927896.1791255,
+  "version": "9.0.0"
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- relative paths: set the site address in the brief to publish absolute URLs -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>index.html</loc><priority>1.0</priority></url>
+  <url><loc>shop.html</loc><priority>0.7</priority></url>
+  <url><loc>categories.html</loc><priority>0.7</priority></url>
+  <url><loc>about.html</loc><priority>0.7</priority></url>
+  <url><loc>faq.html</loc><priority>0.7</priority></url>
+  <url><loc>contact.html</loc><priority>0.7</priority></url>
+  <url><loc>product-p1.html</loc><priority>0.7</priority></url>
+  <url><loc>product-p2.html</loc><priority>0.7</priority></url>
+  <url><loc>product-p3.html</loc><priority>0.7</priority></url>
+  <url><loc>product-p4.html</loc><priority>0.7</priority></url>
+  <url><loc>product-p5.html</loc><priority>0.7</priority></url>
+  <url><loc>product-p6.html</loc><priority>0.7</priority></url>
+</urlset>
